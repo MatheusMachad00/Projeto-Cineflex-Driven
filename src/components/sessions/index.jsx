@@ -11,7 +11,7 @@ export default function Sessions({ setFooterState }) {
     const { idMovie } = useParams();
     const [days, setDays] = useState([]);
     const [movie, setMovie] = useState([]);
-    console.log(days)
+
 
 
     useEffect(() => {

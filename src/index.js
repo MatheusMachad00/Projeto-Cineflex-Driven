@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Header from "./components/header";
 import StartScreen from "./components/startScreen";
 import Sessions from "./components/sessions";
+import Seats from "./components/seats";
 
 function App() {
     const [footerState, setFooterState] = useState([]);
@@ -17,6 +18,7 @@ function App() {
                     <Route path="/sessoes/:idMovie" element={<Sessions 
                     setFooterState={(title,posterURL,weekday,hour) => setFooterState(
                         [...footerState,title,posterURL,weekday,hour])}/>} />
+                    <Route path="/assentos/:idSection" element={<Seats footerState={footerState} />} />
                 </Routes>
             </BrowserRouter>
     )
