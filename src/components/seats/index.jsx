@@ -3,24 +3,39 @@ import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
-    SubTitle, ContainerRow, Seat, Infos, Selected, Avaliable, Unavaliable, Circles,
+    SubTitle, ContainerRow, Seat, Infos, Selected, Available, Unavailable, Circles,
     TextInfos, GIF, InputBlock, FinalizeButton} from "./style"
 
 
 export default function Seats(){
     const { idSection } = useParams();
     const [data, setData] = useState(false);
+    const [seatNumber, setSeatNumber] = useState([]);
+    const [seatId, setSeatId] = useState([])
+    const [isSelected, setIsSelected] = useState([]);
 
     useEffect(() => {
         const request = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSection}/seats`);
         request.then(answer => {
             const { data } = answer;
             setData(data)
-            console.log(data.seats)
         })
         request.catch(<p>Carregando...</p>);
     }, []);
 
+    function chooseSeat(id, name){
+        setSeatId([...seatId, id]);
+        setSeatNumber([...seatNumber, name])
+    }
+
+    function setSelected(selected) {
+        if (selected.includes(selected)) {
+            setIsSelected([...selected.filter((s) => s !== selected)]);
+            return;
+        }
+
+        setIsSelected([...isSelected, selected]);
+    }
 
     if(data === false){
         return (<p>Carregando...</p>)
@@ -29,22 +44,25 @@ export default function Seats(){
             <>
             <SubTitle>Selecione o(s) assento(s)</SubTitle>
                 <ContainerRow>
-                    {/* {
-                        data.seats.map((seat, index) => {
-                            const { id, isAvaliable, name } = seat
-                            return (<Seat key={index} onClick={() => movieSeats(id, name)}>{name}</Seat>)
-                        })
-                    } */}
+                    {data === false ? <p>Carregando...</p> : 
+                    data.seats.map((seat, index) => {
+                        const { id, name, isAvailable } = seat
+                        return (<Seat 
+                            key={index} 
+                            onClick={() => chooseSeat(id, name)}
+                            isAvailable={isAvailable}>{name}</Seat>
+                            )
+                    })}
                 </ContainerRow>
                 <Infos>
                     <Circles>
                         <Selected></Selected>
-                        <Avaliable></Avaliable>
-                        <Unavaliable></Unavaliable>
+                        <Available></Available>
+                        <Unavailable></Unavailable>
                     </Circles>
                     <TextInfos>
-                        <p>Disponível</p>
                         <p>Selecionado</p>
+                        <p>Disponível</p>
                         <p>Indisponível</p>
                     </TextInfos>
                 </Infos>

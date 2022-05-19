@@ -19,11 +19,12 @@ gap: 8px;
 justify-content: center;
 flex-wrap: wrap;
 margin-top: -10px;
+margin-left: 20px;
+margin-right: 20px;
 `
 
 export const Seat = styled.div`
-/* background-color: #C3CFD9; */
-border: 1px solid #808F9D;
+border: 1px solid ${props => props.isAvailable ? '#7B8B99' : '#F7C52B;'};;
 box-sizing: border-box;
 border-radius: 12px;
 color: #000000;
@@ -39,7 +40,10 @@ justify-content: center;
 text-align: center;
 align-items: center;
 margin-bottom: 5px;
-.avaliable{
+background-color: ${props => props.isAvailable ? '#C3CFD9' : '#FBE192'};
+
+
+.available{
     background-color: #C3CFD9;
     border: 1px solid #7B8B99;
 }
@@ -67,6 +71,7 @@ justify-content: space-around;
 export const TextInfos = styled.div`
 display: flex;
 justify-content: space-around;
+
 p{
     font-family: 'Roboto';
     font-style: normal;
@@ -86,7 +91,7 @@ width: 26px;
 height: 26px;
 `
 
-export const Avaliable = styled.div`
+export const Available = styled.div`
 background-color: #C3CFD9;
 border: 1px solid #7B8B99;
 box-sizing: border-box;
@@ -95,7 +100,7 @@ width: 26px;
 height: 26px;
 `
 
-export const Unavaliable = styled.div`
+export const Unavailable = styled.div`
 background-color: #FBE192;
 border: 1px solid #F7C52B;
 box-sizing: border-box;
