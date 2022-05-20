@@ -23,7 +23,7 @@ margin-left: 20px;
 margin-right: 20px;
 `
 
-export const Seat = styled.div`
+/* export const Seat = styled.div`
 border: 1px solid ${props => props.isAvailable ? '#7B8B99' : '#F7C52B;'};;
 box-sizing: border-box;
 border-radius: 12px;
@@ -43,6 +43,7 @@ margin-bottom: 5px;
 background-color: ${props => props.isAvailable ? '#C3CFD9' : '#FBE192'};
 
 
+
 .available{
     background-color: #C3CFD9;
     border: 1px solid #7B8B99;
@@ -55,7 +56,7 @@ background-color: ${props => props.isAvailable ? '#C3CFD9' : '#FBE192'};
     background-color: #8DD7CF;
     border: 1px solid #1AAE9E;
 }
-`
+` */
 
 export const Infos = styled.div`
 display: flex;
