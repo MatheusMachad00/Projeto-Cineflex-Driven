@@ -21,6 +21,11 @@ flex-wrap: wrap;
 margin-top: -10px;
 margin-left: 20px;
 margin-right: 20px;
+
+/* .color{
+    background-color: #8DD7CF;
+    border: 1px solid #1AAE9E;
+} */
 `
 
 /* export const Seat = styled.div`

@@ -14,6 +14,8 @@ export default function Seats() {
     const [data, setData] = useState(false);
     const [seatNumber, setSeatNumber] = useState([]); //para a tela final
     const [seatId, setSeatId] = useState([]) //para o post
+    const [isSelected, setIsSelected] = useState(false);
+    const [color, setColor] = useState('')
 
 
     useEffect(() => {
@@ -21,24 +23,30 @@ export default function Seats() {
         request.then(answer => {
             const { data } = answer;
             setData(data)
-            console.log(data.seats)
         })
         request.catch(<p>Carregando...</p>);
     }, []);
 
     function chooseSeat(id, name, isAvailable) {
-
-        console.log(seatNumber)
         if (!isAvailable) {
             alert('O assento não está disponível! Tente outro.')
         }
         else {
             setSeatId([...seatId, id]);
             setSeatNumber([...seatNumber, name])
+            setIsSelected(true);
+            seatColor(isAvailable, isSelected)
         }
     }
 
+    function seatColor(isAvailable, isSelected) {
+        if(isSelected) return setColor("#8DD7CF");
+        else if(isAvailable) return setColor("#C3CFD9");
+        else return setColor("#FBE192"); 
+    }
 
+
+console.log(seatId, seatNumber)
     if (data === false) {
         return (<p>Carregando...</p>)
     } else {
@@ -49,11 +57,16 @@ export default function Seats() {
                     {data === false ? <p>Carregando...</p> :
                         data.seats.map((seat, index) => {
                             const { id, name, isAvailable } = seat
-                            return (<Seat
+                            return (
+                            <Seat /* className={!isSelected ? 'color' : ''} */
                                 key={index}
                                 isAvailable={isAvailable}
                                 name={name}
-                                onClick={() => chooseSeat(id, name, isAvailable)}
+                                chooseSeat={chooseSeat}
+                                id={id}
+                                seatId={seatId}
+                                isSelected={isSelected}
+                                color={color}
                             />
                             )
                         })}

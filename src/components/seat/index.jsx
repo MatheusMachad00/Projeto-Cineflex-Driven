@@ -1,26 +1,21 @@
 import { SeatButton } from "./style"
 import { useState } from "react";
 
-export default function Seat({name, isAvailable}) {
-    const [isSelected, setIsSelected] = useState([]);
 
-    function seatColor(isAvailable, selected) {
-        seatSelected(selected)
-        if(isSelected.includes(selected)) return "#8DD7CF";
-        else if(isAvailable) return "#C3CFD9";
-        else return "#FBE192"; 
-    }
+export default function Seat({name, isAvailable, chooseSeat, id, isSelected, color}) {
 
-    function seatSelected(selected) {
-        if (isSelected.includes(selected)) {
-            setIsSelected([...isSelected.filter((s) => s !== selected)]);
-            return;
-        }
-
-        setIsSelected([...isSelected, selected]);
-    }
+    /* function seatColor(isAvailable, isSelected) {
+        if(isSelected) return setColor("#8DD7CF");
+        else if(isAvailable) return setColor("#C3CFD9");
+        else return setColor("#FBE192"); 
+    } */
+    
 
     return (
-        <SeatButton isAvailable={isAvailable} >{name}</SeatButton>
+        <SeatButton
+        isAvailable={isAvailable}
+        isSelected={isSelected}
+        color={color}
+        onClick={() => chooseSeat(id, name, isAvailable)}>{name}</SeatButton>
     );
 }

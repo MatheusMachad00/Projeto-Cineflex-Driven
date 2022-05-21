@@ -1,7 +1,19 @@
 import styled from 'styled-components'
 
+/* const handleColorType = color => {
+    switch (color) {
+        case "unavailable":
+            return "#FBE192";
+        case "selected":
+            return "#8DD7CF";
+        default:
+            return "#C3CFD9";
+    }
+}; */
+
+
 export const SeatButton = styled.div`
-border: 1px solid ${props => props.isAvailable ? '#7B8B99' : '#F7C52B;'};;
+border: 1px solid ${props => props.isAvailable ? '#7B8B99' : '#F7C52B;'};
 box-sizing: border-box;
 border-radius: 12px;
 color: #000000;
@@ -17,6 +29,5 @@ justify-content: center;
 text-align: center;
 align-items: center;
 margin-bottom: 5px;
-background-color: ${props => props.isAvailable ? '#C3CFD9' : '#FBE192'};
-
+background-color: ${({isAvailable, isSelected}) => !isAvailable ? '#FBE192' : '#C3CFD9'};
 `
