@@ -5,7 +5,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
     SubTitle, ContainerRow, Infos, Selected, Available, Unavailable, Circles,
-    TextInfos, GIF, InputBlock, FinalizeButton
+    TextInfos, InputBlock, FinalizeButton
 } from "./style"
 
 
@@ -14,8 +14,7 @@ export default function Seats() {
     const [data, setData] = useState(false);
     const [seatNumber, setSeatNumber] = useState([]); //para a tela final
     const [seatId, setSeatId] = useState([]) //para o post
-    const [isSelected, setIsSelected] = useState(false);
-    const [color, setColor] = useState('')
+    const [color, setColor] = useState([])
 
 
     useEffect(() => {
@@ -34,15 +33,17 @@ export default function Seats() {
         else {
             setSeatId([...seatId, id]);
             setSeatNumber([...seatNumber, name])
-            setIsSelected(true);
-            seatColor(isAvailable, isSelected)
+            seatSelected(id);
         }
     }
 
-    function seatColor(isAvailable, isSelected) {
-        if(isSelected) return setColor("#8DD7CF");
-        else if(isAvailable) return setColor("#C3CFD9");
-        else return setColor("#FBE192"); 
+    function seatSelected(id) {
+        if (color.includes(id)) {
+            setColor([...color.filter((i) => i !== id)]);
+            return;
+        }
+
+        setColor([...color, id]);
     }
 
 
@@ -58,7 +59,7 @@ console.log(seatId, seatNumber)
                         data.seats.map((seat, index) => {
                             const { id, name, isAvailable } = seat
                             return (
-                            <Seat /* className={!isSelected ? 'color' : ''} */
+                            <Seat
                                 key={index}
                                 isAvailable={isAvailable}
                                 name={name}
@@ -66,7 +67,7 @@ console.log(seatId, seatNumber)
                                 id={id}
                                 seatId={seatId}
                                 isSelected={isSelected}
-                                color={color}
+                                color={color} 
                             />
                             )
                         })}

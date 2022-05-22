@@ -21,47 +21,7 @@ flex-wrap: wrap;
 margin-top: -10px;
 margin-left: 20px;
 margin-right: 20px;
-
-/* .color{
-    background-color: #8DD7CF;
-    border: 1px solid #1AAE9E;
-} */
 `
-
-/* export const Seat = styled.div`
-border: 1px solid ${props => props.isAvailable ? '#7B8B99' : '#F7C52B;'};;
-box-sizing: border-box;
-border-radius: 12px;
-color: #000000;
-font-family: 'Roboto';
-font-style: normal;
-font-weight: 400;
-font-size: 11px;
-line-height: 13px;
-width: 26px;
-height: 26px;
-display: flex;
-justify-content: center;
-text-align: center;
-align-items: center;
-margin-bottom: 5px;
-background-color: ${props => props.isAvailable ? '#C3CFD9' : '#FBE192'};
-
-
-
-.available{
-    background-color: #C3CFD9;
-    border: 1px solid #7B8B99;
-}
-.unavaliable{
-    background-color: #FBE192;
-    border: 1px solid #F7C52B;
-}
-.selected{
-    background-color: #8DD7CF;
-    border: 1px solid #1AAE9E;
-}
-` */
 
 export const Infos = styled.div`
 display: flex;
