@@ -54,4 +54,5 @@ line-height: 21px;
 color: #FFFFFF;
 margin: 57px auto 0 auto;
 border-radius: 3px;
+border: none;
 ` 

@@ -15,7 +15,7 @@ export default function StartScreen() {
             const { data } = answer;
             setItems(data);
         });
-        request.then();
+        request.then(<p>Carregando...</p>);
     }, []);
 
     return (

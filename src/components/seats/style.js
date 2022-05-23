@@ -26,7 +26,7 @@ margin-right: 20px;
 export const Infos = styled.div`
 display: flex;
 flex-direction: column;
-margin-top: 10px;
+margin-top: 16px;
 `
 
 export const Circles = styled.div`
@@ -82,17 +82,11 @@ align-items: center;
 text-align: center;
 `
 
-export const GIF = styled.img`
-margin-left: 45px;
-`
-
 export const InputBlock = styled.div`
 display: flex;
 flex-direction: column;
-/* align-items: stretch; */
-/* background-color: red; */
-/* margin-top: -10px;
-margin-left: 24px; */
+padding: 0 24px 0 24px;
+margin-top: 41px;
 input{
     background: #FFFFFF;
     border: 1px solid #D5D5D5;
@@ -128,4 +122,5 @@ line-height: 21px;
 color: #FFFFFF;
 margin: 57px auto 0 auto;
 border-radius: 3px;
+border: none;
 ` 

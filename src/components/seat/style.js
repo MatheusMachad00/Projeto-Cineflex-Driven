@@ -19,4 +19,5 @@ text-align: center;
 align-items: center;
 margin-bottom: 5px;
 background-color: ${props => props.color ? '#8DD7CF' : ''};
+border: 1px solid ${props => props.color ? '#1AAE9E' : ''};
 `

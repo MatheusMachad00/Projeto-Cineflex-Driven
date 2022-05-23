@@ -124,8 +124,9 @@ export default function Seats() {
                             <label >CPF do comprador:</label>
                             <input 
                             type="text" 
-                            placeholder="Digite seu cpf" 
+                            placeholder="Digite seu CPF (apenas números)" 
                             required
+                            maxlength="11"
                             onChange={e => setCPF(e.target.value)}
                             value={CPF}/>
                             

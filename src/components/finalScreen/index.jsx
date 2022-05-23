@@ -5,7 +5,8 @@ import { SubTitle, InfoBox, FinalizeButton } from "./style"
 export default function FinalScreen() {
     const { state } = useLocation();
     const { name, cpf, weekday, hour, title, number } = state;
-    console.log(state)
+
+    let cpfUser = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
 
     return (
         <>
@@ -25,7 +26,7 @@ export default function FinalScreen() {
             <InfoBox>
                 <h2>Comprador</h2>
                 <h3>Nome: {name}</h3>
-                <h3>CPF: {cpf}</h3>
+                <h3>CPF: {cpfUser}</h3>
             </InfoBox>
 
             <Link to="/">

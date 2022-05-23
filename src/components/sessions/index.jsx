@@ -4,15 +4,10 @@ import axios from "axios";
 import Footer from "../footer";
 import { SubTitle, MovieDate, ContainerTime, Button} from "./style"
 
-
-
-
 export default function Sessions({ setFooterState }) {
     const { idMovie } = useParams();
     const [days, setDays] = useState([]);
     const [movie, setMovie] = useState([]);
-
-
 
     useEffect(() => {
         const request = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idMovie}/showtimes`);

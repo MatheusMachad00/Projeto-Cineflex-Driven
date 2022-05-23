@@ -38,5 +38,5 @@ justify-content: center;
 align-items: center;
 border-radius: 3px;
 margin: 22px 0 22px 22px;
-text-decoration: none;
+border: none;
 `
