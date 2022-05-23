@@ -1,7 +1,7 @@
 import Footer from "../footer"
 import Seat from "../seat";
 import { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import {
     SubTitle, ContainerRow, Infos, Selected, Available, Unavailable, Circles,
@@ -12,9 +12,12 @@ import {
 export default function Seats() {
     const { idSection } = useParams();
     const [data, setData] = useState(false);
-    const [seatNumber, setSeatNumber] = useState([]); //para a tela final
-    const [seatId, setSeatId] = useState([]) //para o post
+    const [seatNumber, setSeatNumber] = useState([]);
+    const [seatId, setSeatId] = useState([])
     const [color, setColor] = useState([])
+    const [CPF, setCPF] = useState('')
+    const [userName, setUserName] = useState('');
+        const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -46,8 +49,29 @@ export default function Seats() {
         setColor([...color, id]);
     }
 
+    function userLogin(event) {
+        event.preventDefault();
+        const request = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
+            ids: seatId,
+            name: userName,
+            cpf: CPF
+        });
+        request.then((answer) => {
+            console.log(answer)
+            navigate("/sucesso", {
+                state: { 
+                    name: userName, 
+                    cpf: CPF, 
+                    ids: seatId, 
+                    weekday: data.day.date, 
+                    hour: data.name, 
+                    title: data.movie.title, 
+                    number: seatNumber}
+            })
+        })
+        request.catch();
+    }
 
-console.log(seatId, seatNumber)
     if (data === false) {
         return (<p>Carregando...</p>)
     } else {
@@ -66,7 +90,6 @@ console.log(seatId, seatNumber)
                                 chooseSeat={chooseSeat}
                                 id={id}
                                 seatId={seatId}
-                                isSelected={isSelected}
                                 color={color} 
                             />
                             )
@@ -86,15 +109,15 @@ console.log(seatId, seatNumber)
                 </Infos>
 
                 <div>
-                    <form /* onSubmit={userLogin} */>
+                    <form onSubmit={userLogin}>
                         <InputBlock>
                             <label >Nome do comprador:</label>
                             <input 
                             type="text" 
                             placeholder="Digite seu nome" 
                             equired
-                            /* onChange={e => setUserName(e.target.value)} */
-                            /* value={userName} */ />
+                            onChange={e => setUserName(e.target.value)}
+                            value={userName} />
                         </InputBlock>
 
                         <InputBlock>
@@ -103,8 +126,8 @@ console.log(seatId, seatNumber)
                             type="text" 
                             placeholder="Digite seu cpf" 
                             required
-                            /* onChange={e => setCPF(e.target.value)} */
-                            /* value={CPF} *//>
+                            onChange={e => setCPF(e.target.value)}
+                            value={CPF}/>
                             
                         </InputBlock>
                         <FinalizeButton type="submit">Reservar assento(s)</FinalizeButton>
